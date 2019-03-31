@@ -15,9 +15,13 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+<allow-navigation href="*" />
+
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
+
 
   <icon src="res/icon/android/ldpi-foreground.png" density="ldpi" />
   <icon src="res/icon/android/mdpi-foreground.png" density="mdpi" />
@@ -36,6 +40,6 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-<allow-navigation href="http://*/*" />
-<allow-intent href="https://*/*" />
+
+
 </widget>
