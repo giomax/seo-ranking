@@ -19,12 +19,12 @@
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
 
-  <icon src="res/icon/android/ldpi-background.png" density="ldpi" />
-  <icon src="res/icon/android/mdpi-background.png" density="mdpi" />
-  <icon src="res/icon/android/hdpi-background.png" density="hdpi" />
-  <icon src="res/icon/android/xhdpi-background.png" density="xhdpi" />
-  <icon src="res/icon/android/xxhdpi-background.png" density="xxhdpi" />
-  <icon src="res/icon/android/xxxhdpi-background.png" density="xxxhdpi"  />
+  <icon src="res/icon/android/ldpi-foreground.png" density="ldpi" />
+  <icon src="res/icon/android/mdpi-foreground.png" density="mdpi" />
+  <icon src="res/icon/android/hdpi-foreground.png" density="hdpi" />
+  <icon src="res/icon/android/xhdpi-foreground.png" density="xhdpi" />
+  <icon src="res/icon/android/xxhdpi-foreground.png" density="xxhdpi" />
+  <icon src="res/icon/android/xxxhdpi-foreground.png" density="xxxhdpi"  />
     </platform>
 
     <platform name="ios">
