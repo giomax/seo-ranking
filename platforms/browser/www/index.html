@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+-->
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>My App</title>
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-right panel-reveal">
+        <div class="content-block">
+			<a class="col button button-large color-white text-color-black add_project" href='add_project.html'>Add Project</a>
+			
+			<a class="col button button-large color-white text-color-black showForKeywords add_keywords" href='add_keywords.html'>Add Keywords</a>
+			<!--
+				<a class="col button button-large color-white text-color-black showForKeywords sort_keywords" href='#'>Sort Keywords</a>
+			-->
+			<a class="col button button-large color-white text-color-black showForKeywords refresh_rankings" href='#'>Refresh Rankings</a>
+			
+			
+			<span class='created_by'>Created By <a href="https://itda.ge">ITDA.GE</a></span>
+        </div>
+    </div>
+
+    <div class="views">
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">SEO Ranking</div>
+                    <div class="right">
+                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pages navbar-through toolbar-through">
+                <div data-page="index" class="page">
+                    <div class="data-table">
+					  <table class='projects customTable'><tbody></tbody></table>
+					</div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+	
+	 <div class="popup popup-loading">
+    <div class="content-block">
+		Please Check your Connection
+		<span class="progressbar-infinite"></span>
+    </div>
+  </div>
+	
+<div class='forKwsloading'>
+	<span class="progressbar-infinite"></span>
+</div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+</html>
