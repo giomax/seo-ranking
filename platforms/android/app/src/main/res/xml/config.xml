@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="seo.ranking" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
         <param name="onload" value="true" />
@@ -18,10 +18,10 @@
     </feature>
     <name>Seo Ranking</name>
     <description>
-        A basic Framework7 template for PhoneGap.
+        SEO Ranking is the successor of the popular SEO Search Ranking. It allows you to easily monitor your websites search enigne ranking for any keywords.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="info@itda.ge" href="https://itda.ge">
+        ITDA.GE
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -31,7 +31,14 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <allow-intent href="market:*" />
+    <icon density="ldpi" src="res/icon/android/ldpi-foreground.png" />
+    <icon density="mdpi" src="res/icon/android/mdpi-foreground.png" />
+    <icon density="hdpi" src="res/icon/android/hdpi-foreground.png" />
+    <icon density="xhdpi" src="res/icon/android/xhdpi-foreground.png" />
+    <icon density="xxhdpi" src="res/icon/android/xxhdpi-foreground.png" />
+    <icon density="xxxhdpi" src="res/icon/android/xxxhdpi-foreground.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />

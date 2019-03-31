@@ -1,2 +1,1 @@
 "# seo-ranking" 
-# seo-ranking

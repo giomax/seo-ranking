@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="seo.ranking" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CordovaHttpPlugin">
         <param name="browser-package" value="CordovaHttpPlugin" />
     </feature>
     <name>Seo Ranking</name>
     <description>
-        A basic Framework7 template for PhoneGap.
+        SEO Ranking is the successor of the popular SEO Search Ranking. It allows you to easily monitor your websites search enigne ranking for any keywords.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="info@itda.ge" href="https://itda.ge">
+        ITDA.GE
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -18,5 +18,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <preference name="DisallowOverscroll" value="true" />
 </widget>
