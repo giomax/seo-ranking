@@ -19,7 +19,6 @@ var mainView = myApp.addView('.view-main', {
 });
 
 $$(document).on('deviceready', function() {
-		
 		setInterval(function () {
 			connectionStatus = navigator.onLine;
 			if(!connectionStatus){
@@ -133,7 +132,7 @@ $$(document).on('click', '.add_keywords',function(){
 });
 $$(document).on('click', '.refresh_rankings',function(){
 	myApp.closePanel();
-	$('.forKwsloading').show();
+	$$('.forKwsloading').show();
 	refresh_rankings(0);
 });
 $$(document).on('click', '.saveKeyword', function (e) {
@@ -181,7 +180,6 @@ function getKeywords(){
 }
 
 function refresh_rankings(i){
-	console.log(current_project.pr['keywords'][i].name);
 		var length = current_project.pr['keywords'].length;
 		var kw = encodeURI(current_project.pr['keywords'][i].name);
 		var checking=-1;
@@ -190,24 +188,24 @@ function refresh_rankings(i){
 				window.localStorage.setItem("projects", JSON.stringify(projects));		
 				if(i<length-1){
 					return refresh_rankings(i+1);
+				}else{
+					$$('.forKwsloading').hide();
 				}
 		});
-	getKeywords();
-	if(i == length-1){
-		$('.forKwsloading').hide();
-	}
+	getKeywords();	
 }
+
 
 function checking_kw(kw,callback){
 	var stop = 0;
 	var url = 'https://www.google.ge/search?q='+kw+'&start='+key;
-			const options = {
-			  method: 'GET' 
-			};
-			 cordova.plugin.http.sendRequest(url, options, function(response) {
+		$.ajax({
+			  url: url,
+			  success: function(response){
 				 var test = $("<div class='test' style='display:none'></div>");
-				 test.html(response.data);				
-					test.find('.g').each(function(){
+				 test.html(response);			 
+					test.find('.uUPGi').each(function(){
+						//console.log(key + '  - '+$(this).find('a').attr('href'));
 					if($(this).find('a').attr('href').indexOf(current_project.pr.project_name) > -1){
 						stop = 1;
 						return callback(key-1);
@@ -220,9 +218,8 @@ function checking_kw(kw,callback){
 				}
 				if(!stop)
 					checking_kw(kw,callback);
-			}, function(response) {
-				
-			});			
+			}
+			});	
 }
 
 function replacer(st){

@@ -15,22 +15,17 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-
-<allow-navigation href="*" />
-
+    <allow-navigation href="*" />
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
-
-
-  <icon src="res/icon/android/ldpi-foreground.png" density="ldpi" />
-  <icon src="res/icon/android/mdpi-foreground.png" density="mdpi" />
-  <icon src="res/icon/android/hdpi-foreground.png" density="hdpi" />
-  <icon src="res/icon/android/xhdpi-foreground.png" density="xhdpi" />
-  <icon src="res/icon/android/xxhdpi-foreground.png" density="xxhdpi" />
-  <icon src="res/icon/android/xxxhdpi-foreground.png" density="xxxhdpi"  />
+        <icon density="ldpi" src="res/icon/android/ldpi-foreground.png" />
+        <icon density="mdpi" src="res/icon/android/mdpi-foreground.png" />
+        <icon density="hdpi" src="res/icon/android/hdpi-foreground.png" />
+        <icon density="xhdpi" src="res/icon/android/xhdpi-foreground.png" />
+        <icon density="xxhdpi" src="res/icon/android/xxhdpi-foreground.png" />
+        <icon density="xxxhdpi" src="res/icon/android/xxxhdpi-foreground.png" />
     </platform>
-
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
@@ -40,6 +35,7 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-
+    <plugin name="cordova-plugin-advanced-http" spec="~2.0.6" />
+	
 
 </widget>
