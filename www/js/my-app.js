@@ -133,8 +133,9 @@ $$(document).on('click', '.add_keywords',function(){
 $$(document).on('click', '.refresh_rankings',function(){
 	myApp.closePanel();
 	$$('.forKwsloading').show();
-	refresh_rankings(0);
+	processArray(current_project.pr['keywords']);
 });
+
 $$(document).on('click', '.saveKeyword', function (e) {
 				if(!current_keyword){
 					var keywords = $$('[name="keywords"]').val().split("\n");
@@ -150,6 +151,40 @@ $$(document).on('click', '.saveKeyword', function (e) {
 				window.localStorage.setItem("projects", JSON.stringify(projects));
 				mainView.router.loadPage('view_project.html');
 });
+
+function delay() {
+  return new Promise(resolve => setTimeout(resolve, 500));
+}
+
+async function delayedLog(item,i) {
+  await delay();
+  var key = 0;
+  checking_kw(item.name,i,key, handling);
+}
+
+function handling(st,i,cod,kw){
+	console.log(kw);
+	console.log(st + ' '+cod);
+	if(st == 'next'){
+		checking_kw(kw,i, cod,handling);
+	}
+	if(st == 'detected' || st == 'not_found'){
+		current_project.pr['keywords'][i].ranking = cod;
+		window.localStorage.setItem("projects", JSON.stringify(projects));		
+		getKeywords();
+	}
+	
+	var length = current_project.pr['keywords'].length;	
+	if(length-1 == i){
+		$$('.forKwsloading').hide();
+	}
+}
+
+async function processArray(array) {
+  array.forEach(async (item,i) => {
+    await delayedLog(item,i);
+  });
+}
 
 function showMenus(name){
 	if(name == 'view_project'){
@@ -171,53 +206,51 @@ function getProjects(){
 
 function getKeywords(){
 	 $$('table.keywords tbody').html('');
+	 var average = 0;
+	 var my_length = 0;
 	current_project.pr['keywords'].forEach(function(obj, i){
 			var ranking = obj.ranking;
-			if(ranking <0)ranking = 'Unchecked';
+			if(ranking <0){
+				ranking = 'Unchecked';
+			}else{
+				average += ranking;
+				my_length +=1;
+			}
 			 $$('table.keywords tbody').append($$("<tr><td class='label-cell' data-i='"+i+"'>"+obj.name+"</td><td>"+ ranking+"</td><td class='tablet-only'><a class='col button button-fill color-blue editKeyword' data-i='"+i+"'>Edit</a></td></tr>"));
 		 });
 	$$('.kwLength').html($$('table.keywords tbody tr').length);
+	$$('.averageRanking').html((average/my_length).toFixed(2));
 }
 
-function refresh_rankings(i){
-		var length = current_project.pr['keywords'].length;
-		var kw = encodeURI(current_project.pr['keywords'][i].name);
-		var checking=-1;
-		checking_kw(kw,function(checking){
-				current_project.pr['keywords'][i].ranking = checking;
-				window.localStorage.setItem("projects", JSON.stringify(projects));		
-				if(i<length-1){
-					return refresh_rankings(i+1);
-				}else{
-					$$('.forKwsloading').hide();
-				}
-		});
-	getKeywords();	
-}
-
-
-function checking_kw(kw,callback){
-	var stop = 0;
-	var url = 'https://www.google.ge/search?q='+kw+'&start='+key;
+function checking_kw(kw,i,key, handleData){
+	var stop =0;
+	var url = 'https://www.googleapis.com/customsearch/v1?key=AIzaSyCTbadO5lqdtSr8p40CFmmnUE9HB3R731Y&cx=011335488892386467744:96umecgyezo&filter=0&q='+kw;
+	if(key){
+		url += '&start='+key;
+	}
 		$.ajax({
 			  url: url,
 			  success: function(response){
-				 var test = $("<div class='test' style='display:none'></div>");
-				 test.html(response);			 
-					test.find('.uUPGi').each(function(){
-						//console.log(key + '  - '+$(this).find('a').attr('href'));
-					if($(this).find('a').attr('href').indexOf(current_project.pr.project_name) > -1){
-						stop = 1;
-						return callback(key-1);
+				  if (typeof response.items === 'undefined') {
+					  return handleData('not_found',i, 0);
+					}
+				  var item_length = response.items.length;
+				 
+				  for(var rowi = 0; rowi<item_length; rowi++){
+					if(response.items[rowi].displayLink.indexOf(current_project.pr.project_name.toLowerCase()) > -1){			return handleData('detected',i, key);
 					}
 					key++;
-				});	
-				if(key > 50){
-					stop=1;
-					return callback(0);
 				}
-				if(!stop)
-					checking_kw(kw,callback);
+				if(key > 50){
+					return handleData('not_found',i, 0);
+				}
+					if(key==10)key +=1;
+					return handleData('next',i, key, kw);
+			},
+			error:function(request){
+				myApp.alert("Something went wrong. Please try again later");
+				$$('.forKwsloading').hide();
+				console.log('status :' +request.status);
 			}
 			});	
 }
